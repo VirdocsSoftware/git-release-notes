@@ -11,7 +11,7 @@ phases:
       - docker pull 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:master
   build:
     commands:
-      - echo build Docker image redshelf-cfi-js:${CODEBUILD_GIT_TAG}
+      - echo build Docker image git-release-notes:${CODEBUILD_GIT_TAG}
       - docker build --build-arg NPM_TOKEN=${NPM_TOKEN} --cache-from 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:master -t git-release-notes:${CODEBUILD_GIT_TAG} .
       - docker tag git-release-notes:${CODEBUILD_GIT_TAG} 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:${CODEBUILD_GIT_TAG}
       - echo build Docker image git-release-notes:${CODEBUILD_GIT_TAG} complete `date`
@@ -20,4 +20,4 @@ phases:
       - echo build Docker images complete `date`
       - echo push Docker images to ECR...
       - docker run -e "NPM_TOKEN=${NPM_TOKEN}" 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:${CODEBUILD_GIT_TAG} bash -c "npm --no-git-tag-version version ${CODEBUILD_GIT_TAG} && npm publish --tag ${CODEBUILD_GIT_TAG}"
-      - docker push 758272223864.dkr.ecr.us-east-1.amazonaws.com/redshelf-cfi-js:${CODEBUILD_GIT_TAG}
+      - docker push 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:${CODEBUILD_GIT_TAG}
