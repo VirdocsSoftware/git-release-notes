@@ -19,5 +19,5 @@ phases:
     commands:
       - echo build Docker images complete `date`
       - echo push Docker images to ECR...
-      - docker run -e "NPM_TOKEN=${NPM_TOKEN}" 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:${CODEBUILD_GIT_TAG} bash -c "npm --no-git-tag-version version ${CODEBUILD_GIT_TAG} && npm publish --tag v${CODEBUILD_GIT_TAG}"
+      - docker run -e "NPM_TOKEN=${NPM_TOKEN}" 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:${CODEBUILD_GIT_TAG} bash -c "npm --no-git-tag-version version v${CODEBUILD_GIT_TAG} && npm publish --tag v${CODEBUILD_GIT_TAG}"
       - docker push 758272223864.dkr.ecr.us-east-1.amazonaws.com/git-release-notes:${CODEBUILD_GIT_TAG}
